@@ -1,0 +1,15 @@
+version: "3.5"
+
+services:
+  terraform:
+    image: hashicorp/terraform:light
+    volumes:
+      - $HOME/.ssh:/root/.ssh:ro
+      - $HOME/.aws/:/root/.aws/:ro
+      - ./:/code
+    working_dir: /code
+    user: root
+    environment:
+      - TF_LOG=DEBUG
+      - AWS_PROFILE
+      - AWS_DEFAULT_PROFILE
